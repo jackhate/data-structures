@@ -1,14 +1,19 @@
-#include "arratStack.h"
+#include "arrayStack.h"
 
 #define EmptyTOS (-1)
 #define MinStackSize (5)
 
-struct StackRecord
+
+void Error(const char* msg)
 {
-    int Capacity;
-    int TopOfStack;
-    ElementType *Array;
-};
+    printf("%s\n", msg);
+}
+
+void FatalError(const char* msg)
+{
+    printf("%s\n", msg);
+}
+
 
 Stack CreateStack(int MaxElements)
 {
@@ -24,7 +29,7 @@ Stack CreateStack(int MaxElements)
     S->Array = malloc(MaxElements * sizeof(struct StackRecord));
     if(S->Array == NULL)
         FatalError("Out of space!!!");
-
+    S->Capacity = MaxElements;
     MakeEmpty(S);
 
     return S;
@@ -47,7 +52,7 @@ int IsEmpty(Stack S)
 
 int IsFull(Stack S)
 {
-    return S->TopOfStack == (Capacity-1);
+    return S->TopOfStack == (S->Capacity-1);
 }
 
 void MakeEmpty(Stack S)
