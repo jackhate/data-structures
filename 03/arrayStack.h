@@ -3,7 +3,7 @@
 #include "stdio.h"
 #include "stdlib.h"
 
-typedef int ElementType;
+typedef char ElementType;
 struct StackRecord;
 typedef struct StackRecord *Stack;
 
