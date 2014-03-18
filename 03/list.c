@@ -77,3 +77,8 @@ void DeleteList(List L)
         P = Tmp;
     }
 }
+
+Position First(List L)
+{
+    return L->Next;
+}
