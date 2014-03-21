@@ -73,5 +73,30 @@ SearchTree Insert(ElementType X, SearchTree T)
 
 SearchTree Delete(ElementType X, SearchTree T)
 {
-	
+	Position TmpCell;
+
+	if(T == NULL)
+		Error("Element Not Found");
+	else if(X < T->Element)
+		return Delete(T->Left);
+	else if(X > T->Element)
+		return Delete(T->Right);
+
+	else if(T->Left && T->Right)
+	{
+		TmpCell = FindMin(T->Right);
+		T->Element = TmpCell->Element;
+		T->Right = Delete(T->Element, T->Right);
+	}
+	else
+	{
+		TmpCell = T;
+		if(T->Left == NULL)
+			T = T->Right;
+		else if(T->Right == NULL)
+			T = T->Left;
+
+		free(TmpCell);
+	}
+
 }
