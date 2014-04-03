@@ -72,3 +72,44 @@ void DestoryTable(HashTable H)
 
 }
 
+Position Find(ElementType Key, HashTable H)
+{
+	Position P;
+	List L;
+	L = H->TheLists[Hash(Key, H->TableSize)];
+
+	P = L->Next;
+	while(P != NULL && P->Element != Key)
+		P = P->Next;
+
+	return P;
+	
+}
+
+void Insert(ElementType Key, HashTable H)
+{
+	Position Pos, NewCell;
+	List = L;
+
+	Pos = Find(Key, H);
+	if(Pos == NULL)
+	{
+		NewCell = malloc(sizeof(struct List Node));
+		if(NewCell == NULL)
+			FatalError("Out of space!");
+		else
+		{
+			L = H->TheLists[Hash(Key, H->TableSize)];
+			NewCell->Next = L->Next;
+			NewCell->Element = Key;
+			L->Next = NewCell;
+		}
+		
+	}
+}
+
+
+ElementType Retrieve(Position P)
+{
+	return P->Element;
+}
