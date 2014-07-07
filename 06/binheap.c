@@ -32,7 +32,7 @@ int IsFull(PriorityQueue H)
 	return H->Size == H->Capacity;
 }
 
-int IsFull(PriorityQueue H)
+int IsEmpty(PriorityQueue H)
 {
 	return H->Size == 0;
 }
