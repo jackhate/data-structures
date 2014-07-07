@@ -44,7 +44,7 @@ void Insert(ElementType X, PriorityQueue H)
 		FatalError("Priority queue if full!!!");
 
 	for(i = ++H->Size; X < H->Elements[i/2];i = i/2)
-		H->Elements[i] = H->MaxElements[i/2];
+		H->Elements[i] = H->Elements[i/2];
 
 	H->Elements[i] = X;
 }
@@ -62,27 +62,23 @@ ElementType FindMin(PriorityQueue H)
 
 ElementType DeleteMin(PriorityQueue H)
 {
-	int i, Child;
 	ElementType MinElement, LastElement;
-
-	if(IsEmpey(H))
-	{
-		Error("Priority queue is empty");
-		return H->Elements[0];
-	}
 
 	MinElement = H->Elements[1];
 	LastElement = H->Elements[H->Size--];
 
-	for(i = 1;i*2 <= H->Size; i = Child)
+	int Child;
+	int i;
+
+	for(i = 1; i * 2 <= H->Size; i = Child)
 	{
-		Child = i*2;
+		Child = i * 2;
 
 		if(Child != H->Size && H->Elements[Child+1] < H->Elements[Child])
 			Child++;
 
 		if(LastElement > H->Elements[Child])
-			H->Elements[i] = Elements[Child];
+			H->Elements[i] = H->Elements[Child];
 		else
 			break;
 	}
@@ -90,6 +86,5 @@ ElementType DeleteMin(PriorityQueue H)
 	H->Elements[i] = LastElement;
 
 	return MinElement;
-
 }
 
